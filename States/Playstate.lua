@@ -31,14 +31,9 @@ function Playstate:update(dt)
         self.player:update(dt)
         self.enemy:update(dt)
     else 
-        self.alpha=0.1 
-      
+        self.alpha=0.1      
         if Keyboard_was_Pressed('escape') then 
             love.event.quit() 
-        end 
-        if Keyboard_was_Pressed('m') then 
-            self:destroyAll()  
-            gStateMachine:change('main_menu')
         end 
     end 
         local colliders =world:queryCircleArea(self.flagX+15,self.flagY+30,20,{'Player'})
@@ -56,8 +51,7 @@ function Playstate:update(dt)
                self:destroyAll()  
                gStateMachine:change('credit')
             end 
-        end 
-    
+        end    
 end 
 
 function Playstate:render() 
@@ -133,13 +127,17 @@ function Playstate:loadMap(mapName)
         elseif currentLevel == 'level3' then 
             self.enemy:spawnEnemy(50,180-30,1,50)
             self.enemy:spawnEnemy(400,240-15,-1,100)
-            self.enemy:spawnEnemy(220,420-30,1,20)
-            self.enemy:spawnEnemy(120,570-30,-1,200)
+            --self.enemy:spawnEnemy(220,420-30-70,1,70)
+            self.enemy:spawnEnemy(220,420-30,1,320)
+            self.enemy:spawnEnemy(120,570-30,-1,300)
+            self.enemy:spawnEnemy(307,625,1,150)
         elseif currentLevel == 'level4' then 
-            self.enemy:spawnEnemy(150,200+20,-1,230)
+            self.enemy:spawnEnemy(150,200+20,-1,150)
             self.enemy:spawnEnemy(230,200+90,-1,70)
-            self.enemy:spawnEnemy(230,200+90+180+60,-1,200)
+            self.enemy:spawnEnemy(230,200+90+180+60-10,-1,200)
+            self.enemy:spawnEnemy(430,200+90+180+60+40,1,70)
             self.enemy:spawnEnemy(230,200+90+180+60+90,1,50)
+            self.enemy:spawnEnemy(168,719,1,550)
         elseif currentLevel == 'level5' then 
             self.enemy:spawnEnemy(230,160,-1,70)
             self.enemy:spawnEnemy(130,160+90,-1,200)
